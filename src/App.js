@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [tasks, setTasks] = useState([]); // Array of tasks
+  const [newTask, setNewTask] = useState(''); // New task
+
+  const handleAddTask = () => {
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, newTask]); // Add task to list, the old list is not modified, INSTEAD A NEW ONE IS CREATED
+      setNewTask(''); // Reset new incoming task
+    }
+  };
+
+  const handleDeleteTask = (task) => {
+    setTasks(tasks.filter(t => t !== task)); // Removes task from the list, essentially  copying the whole list, minus that specific task
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>To-Do List</h1>
+      <input
+        type="text"
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)} // e.target.value = new input value, entered by user
+        placeholder="Add new task"
+      />
+      <button onClick={handleAddTask}>Add</button> // Execute handleAddTask when button is pressed
+
+      <ul>
+        {tasks.map((task, index) => ( // Display task list as unordered list
+          <li key={index}>
+            {task}
+            <button onClick={() => handleDeleteTask(task)}>Delete</button> // Delete task when button is pressed
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
