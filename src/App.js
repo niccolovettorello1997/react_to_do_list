@@ -25,13 +25,13 @@ function App() {
         onChange={(e) => setNewTask(e.target.value)} // e.target.value = new input value, entered by user
         placeholder="Add new task"
       />
-      <button onClick={handleAddTask}>Add</button> // Execute handleAddTask when button is pressed
+      <button onClick={handleAddTask}>Add</button> {/* Execute handleAddTask when button is pressed */}
 
       <ul>
         {tasks.map((task, index) => ( // Display task list as unordered list
           <li key={index}>
             {task}
-            <button onClick={() => handleDeleteTask(task)}>Delete</button> // Delete task when button is pressed
+            <button onClick={() => handleDeleteTask(task)}>Delete</button> {/* Delete task when button is pressed */}
           </li>
         ))}
       </ul>
