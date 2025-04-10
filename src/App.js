@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]); // Array of tasks
   const [newTask, setNewTask] = useState(''); // New task
+  const [numberOfTasks, setNumberOfTasks] = useState(0); // Current number of tasks
+
+  useEffect(() => {
+    console.log(numberOfTasks);
+  }, []);
 
   const handleAddTask = () => {
     if (newTask.trim() !== '') {
       setTasks([...tasks, newTask]); // Add task to list, the old list is not modified, INSTEAD A NEW ONE IS CREATED
       setNewTask(''); // Reset new incoming task
+      setNumberOfTasks(tasks.length + 1); // Increment total number of tasks
     }
   };
 
