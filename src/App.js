@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     console.log(numberOfTasks);
-  }, []);
+  }, [numberOfTasks]);
 
   const handleAddTask = () => {
     if (newTask.trim() !== '') {
@@ -20,6 +20,7 @@ function App() {
 
   const handleDeleteTask = (task) => {
     setTasks(tasks.filter(t => t !== task)); // Removes task from the list, essentially  copying the whole list, minus that specific task
+    setNumberOfTasks(tasks.length - 1); // Update number of tasks
   };
 
   return (
