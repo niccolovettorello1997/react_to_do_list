@@ -12,15 +12,17 @@ function App() {
 
   const handleAddTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, newTask]); // Add task to list, the old list is not modified, INSTEAD A NEW ONE IS CREATED
+      const updatedTasks = [...tasks, newTask];
+      setTasks(updatedTasks); // Add task to list, the old list is not modified, INSTEAD A NEW ONE IS CREATED
       setNewTask(''); // Reset new incoming task
-      setNumberOfTasks(tasks.length + 1); // Increment total number of tasks
+      setNumberOfTasks(updatedTasks.length); // Increment total number of tasks
     }
   };
 
   const handleDeleteTask = (task) => {
-    setTasks(tasks.filter(t => t !== task)); // Removes task from the list, essentially  copying the whole list, minus that specific task
-    setNumberOfTasks(tasks.length - 1); // Update number of tasks
+    const updatedTasks = tasks.filter(t => t !== task);
+    setTasks(updatedTasks); // Removes task from the list, essentially  copying the whole list, minus that specific task
+    setNumberOfTasks(updatedTasks.length); // Update number of tasks
   };
 
   return (
